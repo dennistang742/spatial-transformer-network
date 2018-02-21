@@ -22,10 +22,10 @@ RESTORE = False
 MODE = 'train'
 
 # directory paths
-root_dir = '/home/kevin/Desktop/transformer/data/'
-logs_dir = '/home/kevin/Desktop/transformer/logs/'
-save_dir = '/home/kevin/Desktop/transformer/checkpoints/'
-vis_path = '/home/kevin/Desktop/transformer/samples/'
+root_dir = './data/'
+logs_dir = './logs/'
+save_dir = './checkpoints/'
+vis_path = './samples/'
 
 # network params
 H, W, C = 60, 60, 1
@@ -250,7 +250,7 @@ def main():
 	fc3_loc = Dense(fc2_loc, 512, 6, use_relu=False, trans=True, name='fc3_loc')
 
 	# spatial transformer
-	h_trans = stn(X, fc3_loc)
+	h_trans = stn(X, fc3_loc, [X.get_shape()[1],X.get_shape()[2]])
 
 	# convnet
 	conv1 = Conv2D(h_trans, 1, 5, 32, name='conv1')
